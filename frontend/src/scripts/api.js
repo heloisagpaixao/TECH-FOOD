@@ -129,3 +129,18 @@ async function atualizarStatusPedido(id, novoStatus) {
   if (!response.ok) throw new Error(dados.erro || `Erro ${response.status}`);
   return dados;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// cadastrarProduto(produto)
+// POST /produtos — envia um novo prato para o banco de dados (Aula 10).
+// ─────────────────────────────────────────────────────────────────────────────
+async function cadastrarProduto(produto) {
+  const response = await fetch(`${BASE_URL}/produtos`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(produto),
+  });
+  const dados = await response.json();
+  if (!response.ok) throw new Error(dados.erro || `Erro ${response.status}`);
+  return dados; // Retorna a resposta do servidor
+}

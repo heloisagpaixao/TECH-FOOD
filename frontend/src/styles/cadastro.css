@@ -1,0 +1,244 @@
+/* ==========================================================
+   CADASTRO.CSS — Estilos da página de Cadastro (cadastro.html)
+   Formulário, campos, validação visual e tabela de pratos.
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   CONTAINER DA SEÇÃO
+   ---------------------------------------------------------- */
+#secao-cadastro {
+  max-width: 750px;
+  margin: 20px auto;
+  padding: 0 20px 40px;
+  background: var(--cor-branco);
+  border-radius: 12px;
+}
+
+/* ----------------------------------------------------------
+   FIELDSET E LEGEND
+   ---------------------------------------------------------- */
+fieldset {
+  border: 2px solid var(--cor-primaria);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+legend {
+  padding: 0 10px;
+  font-weight: bold;
+  color: var(--cor-primaria);
+}
+
+/* ----------------------------------------------------------
+   CAMPOS DO FORMULÁRIO
+   ---------------------------------------------------------- */
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.campo-form label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--cor-primaria);
+}
+
+.obrigatorio {
+  color: #e74c3c;
+}
+
+.campo-form input[type="text"],
+.campo-form input[type="number"],
+.campo-form textarea,
+.campo-form select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus,
+.campo-form select:focus {
+  border-color: var(--cor-destaque);
+  outline: none;
+  background-color: var(--cor-branco);
+}
+
+/* ----------------------------------------------------------
+   RADIO E CHECKBOX
+   ---------------------------------------------------------- */
+.campo-radio {
+  border: 1px dashed var(--cor-borda);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.campo-radio legend {
+  font-size: 0.9rem;
+}
+
+.label-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------------
+   MENSAGENS DE ERRO DE VALIDAÇÃO
+   ---------------------------------------------------------- */
+.msg-erro {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  font-weight: bold;
+  min-height: 16px;
+}
+
+/* ----------------------------------------------------------
+   BOTÕES DO FORMULÁRIO
+   ---------------------------------------------------------- */
+.btn-form-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-cadastrar {
+  background-color: #27ae60;
+  color: var(--cor-branco);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cadastrar:hover {
+  background-color: #219a52;
+}
+
+.btn-limpar-form {
+  background-color: #95a5a6;
+  color: var(--cor-branco);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-limpar-form:hover {
+  background-color: #7f8c8d;
+}
+
+/* ----------------------------------------------------------
+   FEEDBACK DE SUCESSO / ERRO
+   ---------------------------------------------------------- */
+#feedback-form {
+  text-align: center;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  min-height: 20px;
+}
+
+#feedback-form.sucesso {
+  background-color: #d5f5e3;
+  color: #1e8449;
+  border: 1px solid #27ae60;
+}
+
+#feedback-form.erro-geral {
+  background-color: #fde8e8;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+/* ----------------------------------------------------------
+   TABELA DE PRATOS CADASTRADOS
+   ---------------------------------------------------------- */
+.subtitulo-tabela {
+  text-align: center;
+  color: var(--cor-primaria);
+  margin: 35px 0 15px;
+  font-size: 1.2rem;
+}
+
+#area-tabela {
+  overflow-x: auto;
+}
+
+#tabela-cardapio {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+#tabela-cardapio caption {
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--cor-primaria);
+  padding: 12px;
+  caption-side: top;
+}
+
+#tabela-cardapio th,
+#tabela-cardapio td {
+  border: 1px solid var(--cor-borda);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+#tabela-cardapio thead th {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+#tabela-cardapio tbody tr:nth-child(even) {
+  background-color: #f5f7fa;
+}
+
+#tabela-cardapio tbody tr:hover {
+  background-color: #fff3e0;
+  transition: background-color 0.2s ease;
+}
+
+#tabela-cardapio tfoot td {
+  background-color: #f0f4f8;
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVIDADE
+   ---------------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  .btn-form-group {
+    flex-direction: column;
+  }
+
+  .btn-cadastrar,
+  .btn-limpar-form {
+    width: 100%;
+  }
+}

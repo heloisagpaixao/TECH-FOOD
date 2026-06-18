@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/styles/global.css" />
     <link rel="stylesheet" href="src/styles/cadastro.css" />
-    <title>TechFood - Cadastrar Prato</title>
+
+    <title>TechFood - Cadastro de Produtos</title>
   </head>
   <body>
-    <!-- =====================================================
-         CABEÇALHO — igual ao index.html (compartilhado via global.css)
-         ===================================================== -->
     <header id="topo-loja">
       <h1 id="titulo-site">TechFood - Sabor & Saber</h1>
       <p id="boas-vindas">Carregando...</p>
@@ -28,217 +26,96 @@
         </ul>
       </nav>
     </header>
-
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL — formulário de cadastro
-         PRÓXIMA ENTREGA: esta seção será o foco da aula de Cadastro.
-         O HTML já está pronto. O JS será descomentado em cadastro.js.
-         ===================================================== -->
     <main>
       <section id="secao-cadastro">
         <h2 class="titulo-secao">Cadastrar Novo Prato</h2>
 
-        <!--
-          action="#": onde o formulário enviaria os dados — o "#" significa
-          "nenhum lugar por enquanto" (sem back-end). Quando tiver servidor,
-          aqui vai a URL da API: action="https://api.techfood.com/pratos"
+        <p
+          id="mensagem"
+          style="
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 20px;
+          "
+        ></p>
 
-          method="post": como os dados viajam. POST envia no corpo da requisição
-          (seguro, não aparece na URL). GET enviaria tudo visível na URL.
+        <article id="dados-cadastro">
+          <form id="form-cadastro" action="#" method="post" novalidate>
+            <label for="input-nome">
+              Nome do Prato: <span class="obrigatorio">*</span></label
+            >
+            <input
+              type="text"
+              id="input-nome"
+              name="nome"
+              placeholder="Ex: Macarrão ao Sugo"
+              maxlength="60"
+              required
+              aria-required="true"
+              aria-describedby="erro-nome"
+            />
 
-          novalidate: desativa a validação nativa do navegador (aquelas bolhas
-          feias padrão). Fazemos nossa própria validação no JavaScript,
-          mais bonita e com mensagens personalizadas.
-        -->
-        <form id="form-cadastro" action="#" method="post" novalidate>
-          <fieldset>
-            <legend>Dados do Prato</legend>
+            <label for="input-desc">
+              Descrição do Prato: <span class="obrigatorio">*</span></label
+            >
+            <input
+              type="text"
+              id="input-desc"
+              placeholder="Ex: Massa italiana..."
+              maxlength="150"
+              required
+              aria-required="true"
+              aria-describedby="erro-desc"
+            />
 
-            <div class="campo-form">
-              <!--
-                required: marca o campo como obrigatório (usado pelo JS).
-                aria-required="true": faz a mesma coisa mas para leitores de tela.
-                aria-describedby="erro-nome": diz ao leitor de tela que a
-                mensagem de erro deste campo está no elemento com id="erro-nome".
-                maxlength: limite máximo de caracteres digitáveis.
-                placeholder: texto de dica que aparece quando o campo está vazio.
-              -->
-              <label for="input-nome"
-                >Nome do Prato: <span class="obrigatorio">*</span></label
-              >
-              <input
-                type="text"
-                id="input-nome"
-                name="nome"
-                placeholder="Ex: Macarrão ao Sugo"
-                maxlength="60"
-                required
-                aria-required="true"
-                aria-describedby="erro-nome"
-              />
-              <!--
-                aria-live="polite": quando o conteúdo deste span mudar,
-                o leitor de tela vai anunciar a mudança assim que terminar
-                o que está lendo no momento ("polite" = educado, espera).
-                role="alert": para erros urgentes, anuncia imediatamente.
-              -->
-              <span
-                class="msg-erro"
-                id="erro-nome"
-                role="alert"
-                aria-live="polite"
-              ></span>
+            <label for="input-preco">
+              Preço do Prato: <span class="obrigatorio">*</span></label
+            >
+            <input
+              type="number"
+              id="input-preco"
+              placeholder="R$0,00"
+              required
+              aria-required="true"
+              aria-describedby="erro-preco"
+            />
+
+            <label for="input-categoria">
+              Categoria do Prato: <span class="obrigatorio">*</span></label
+            >
+            <select
+              id="input-categoria"
+              required
+              aria-required="true"
+              aria-describedby="erro-categoria"
+            >
+              <option value="">-- Selecione --</option>
+              <option value="massas">Massas</option>
+              <option value="sobremesas">Sobremesas</option>
+              <option value="bebidas">Bebidas</option>
+              <option value="entradas">Entradas</option>
+            </select>
+
+            <label for="input-imagem">
+              Imagem do Prato: <span class="obrigatorio">*</span></label
+            >
+            <input
+              type="file"
+              id="input-imagem"
+              required
+              aria-required="true"
+              aria-describedby="erro-imagem"
+            />
+
+            <div class="botoes-container">
+              <button type="submit">✓ Salvar Prato</button>
+              <button type="reset">✗ Limpar</button>
             </div>
-
-            <div class="campo-form">
-              <label for="input-desc"
-                >Descrição: <span class="obrigatorio">*</span></label
-              >
-              <textarea
-                id="input-desc"
-                name="descricao"
-                placeholder="Descreva os ingredientes..."
-                rows="3"
-                maxlength="150"
-                required
-                aria-required="true"
-                aria-describedby="erro-desc"
-              ></textarea>
-              <span
-                class="msg-erro"
-                id="erro-desc"
-                role="alert"
-                aria-live="polite"
-              ></span>
-            </div>
-
-            <div class="campo-form">
-              <!--
-                type="number": campo numérico — exibe teclado numérico no mobile.
-                min="0.01": valor mínimo aceito.
-                step="0.01": incremento ao clicar nas setas (aceita centavos).
-              -->
-              <label for="input-preco"
-                >Preço (R$): <span class="obrigatorio">*</span></label
-              >
-              <input
-                type="number"
-                id="input-preco"
-                name="preco"
-                placeholder="0.00"
-                min="0.01"
-                step="0.01"
-                required
-                aria-required="true"
-                aria-describedby="erro-preco"
-              />
-              <span
-                class="msg-erro"
-                id="erro-preco"
-                role="alert"
-                aria-live="polite"
-              ></span>
-            </div>
-
-            <div class="campo-form">
-              <label for="input-categoria"
-                >Categoria: <span class="obrigatorio">*</span></label
-              >
-              <select
-                id="input-categoria"
-                name="categoria"
-                required
-                aria-required="true"
-                aria-describedby="erro-categoria"
-              >
-                <option value="">-- Selecione --</option>
-                <option value="massas">Massas</option>
-                <option value="sobremesas">Sobremesas</option>
-                <option value="bebidas">Bebidas</option>
-                <option value="entradas">Entradas</option>
-              </select>
-              <span
-                class="msg-erro"
-                id="erro-categoria"
-                role="alert"
-                aria-live="polite"
-              ></span>
-            </div>
-
-            <div class="campo-form">
-              <fieldset class="campo-radio">
-                <legend>Disponibilidade:</legend>
-                <label
-                  ><input type="radio" name="disponivel" value="sim" checked />
-                  Disponível</label
-                >
-                <label
-                  ><input type="radio" name="disponivel" value="nao" />
-                  Indisponível</label
-                >
-              </fieldset>
-            </div>
-
-            <div class="campo-form">
-              <label class="label-check">
-                <input type="checkbox" id="input-destaque" name="destaque" />
-                Marcar como Destaque
-              </label>
-            </div>
-          </fieldset>
-
-          <div class="btn-form-group">
-            <button type="submit" class="btn-cadastrar">✔ Salvar Prato</button>
-            <button type="reset" class="btn-limpar-form">✖ Limpar</button>
-          </div>
-
-          <!-- Área onde o JS vai exibir mensagem de sucesso ou erro -->
-          <div id="feedback-form" role="status" aria-live="polite"></div>
-        </form>
-
-        <!-- =====================================================
-             TABELA DE PRATOS CADASTRADOS
-             Será preenchida dinamicamente pelo cadastro.js
-             ===================================================== -->
-        <div id="area-tabela">
-          <h3 class="subtitulo-tabela">Pratos Cadastrados</h3>
-          <table id="tabela-cardapio" aria-label="Tabela de pratos cadastrados">
-            <caption>
-              Cardápio Completo
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Prato</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Disponível</th>
-                <th scope="col">Destaque</th>
-                <!--
-                  PRÓXIMA ENTREGA (Edição/Exclusão):
-                  Descomentar a coluna abaixo quando implementar ações na tabela
-                -->
-                <!-- <th scope="col">Ações</th> -->
-              </tr>
-            </thead>
-            <tbody id="corpo-tabela">
-              <!-- Preenchido pelo cadastro.js -->
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="6" id="rodape-tabela">
-                  Atualizado em: <span id="data-tabela"></span>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+          </form>
+        </article>
       </section>
     </main>
-
-    <!-- =====================================================
-         RODAPÉ
-         ===================================================== -->
     <footer id="rodape">
       <div class="info-footer">
         <p><strong>TechFood 2026</strong></p>
@@ -247,8 +124,8 @@
       </div>
       <p id="data-hora-footer"></p>
     </footer>
-
     <script src="src/scripts/global.js"></script>
     <script src="src/scripts/cadastro.js"></script>
+    <script src="src/scripts/api.js"></script>
   </body>
 </html>

@@ -33,30 +33,6 @@ A aplicação realiza o envio de dados textuais e o **upload real de arquivos de
 
 ---
 
-## 💻 Como Executar o Projeto
-1. Clone este repositório para a máquina local:
-```bash
-git clone https://github.com/seu-usuario/techfood.git
-```
-```
-2. Entre na pasta do projeto:
-   ```bash
-   cd techfood
-```
-3. Instale as dependências necessárias:
-```bash
-npm install
-```
-```
-4. Inicie o servidor local:
-   ```bash
-npm start
-```
-*Ou execute com `node server.js`.*
-5. Abra o arquivo `cadastro.html` no navegador ou acesse a URL indicada pelo servidor para testar o sistema.
-
----
-
 ## 🧑‍💻 Autoria
 * **Nome:** Heloísa Gabrielly Paixão
 * **Turma:** 3º ano B EM - Técnico em Desenvolvimento de Sistemas (SENAI Itu)
